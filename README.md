@@ -365,15 +365,3 @@ To keep the server fair and enjoyable:
 
 **Press `H` in-game at any time to open the server guide.**
 
----
-
-## Official Guide
-
-For the original and most up-to-date server guide:
-
-[Elite Cops & Robbers Server Guide](https://elitecnr.net/help.html?utm_source=chatgpt.com)
-
----
-
-**Elite Cops & Robbers**
-*Press `H` in-game for the server guide.*
