@@ -1,4 +1,5 @@
 This is a custom cops and robbers server for GTA V Legacy (FiveM) that anybody can use as an example.
+Feel free to use resources to help build your own cops and robbers server.
 
 # Elite Cops & Robbers — FiveM Server
 
