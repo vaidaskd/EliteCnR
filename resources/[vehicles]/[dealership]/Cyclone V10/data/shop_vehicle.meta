@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ShopVehicleDataArray>
+	<Vehicles>
+	<Item>
+		<lockHash>CU_VEH_cyclone2c</lockHash>
+		<modelNameHash>cyclone2c</modelNameHash>
+		<cost value="100"/>
+		<textLabel>cyclone2c</textLabel>
+		<textLabel></textLabel>
+	</Item>
+	</Vehicles>
+</ShopVehicleDataArray>

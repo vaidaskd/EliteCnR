@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elite Cops &amp; Robbers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Background layers -->
+    <div class="sky"></div>
+    <div class="searchlight searchlight--blue"></div>
+    <div class="searchlight searchlight--red"></div>
+    <div class="skyline"></div>
+    <div class="street"></div>
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
+
+
+<main class="stage">
+
+        <!-- Brand mark -->
+        <div class="brand">
+            <span class="brand__bar brand__bar--cop"></span>
+            <span class="brand__mark"><span class="brand__elite">ELITE</span><span class="brand__cnr"><span class="bc">C</span><span class="bn">n</span><span class="br">R</span></span></span>
+            <span class="brand__bar brand__bar--rob"></span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title">
+            <span class="title__elite">ELITE</span>
+            <span class="title__cops">COPS</span>
+            <span class="title__amp">&amp;</span>
+            <span class="title__robbers">ROBBERS</span>
+        </h1>
+
+        <p class="tagline">Patrol the streets. Rob stores and banks. Own Los Santos.</p>
+
+        <!-- Cop vs Robber info split -->
+        <div class="info-split">
+            <div class="info-card info-card--cop">
+                <div class="info-card__role">COP</div>
+                <ul class="info-card__list">
+                    <li><span class="val">+6 credits</span> per arrest</li>
+                    <li><span class="val">$1000 cash</span> per arrest</li>
+                    <li><span class="val">+1 credit</span> per kill</li>
+                    <li>Spend credits on weapons, armor &amp; vehicles</li>
+                </ul>
+            </div>
+
+            <div class="info-vs">VS</div>
+
+            <div class="info-card info-card--rob">
+                <div class="info-card__role">ROBBER</div>
+                <ul class="info-card__list">
+                    <li><span class="val">$1K + 1 credit</span> per 24/7 store</li>
+                    <li><span class="val">$3K</span> jewelry (3 credits)</li>
+                    <li><span class="val">$5K</span> bank (5 credits)</li>
+                    <li>Avoid cops — jail time stacks per crime</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Rotating tips -->
+        <div class="tip">
+            <span class="tip__label">TIP</span>
+            <span class="tip__text" id="tip">Aim a weapon at a store clerk for 1 second to begin a robbery.</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="loader">
+            <div class="loader__bar">
+                <div class="loader__fill" id="bar"></div>
+            </div>
+            <div class="loader__meta">
+                <span class="loader__status" id="status">Connecting to dispatch…</span>
+                <span class="loader__pct" id="pct">0%</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <span class="footer__name">ELITE COPS &amp; ROBBERS</span>
+        <span class="footer__dot">•</span>
+        <span class="footer__hint">Press <b>H</b> in-game for the server guide</span>
+    </footer>
+
+    <!-- Background music + mute/unmute toggle -->
+    <audio id="bgm" src="burgundy-all-night.mp3" loop autoplay></audio>
+    <button id="music-toggle" class="music-toggle" type="button" title="Toggle music" aria-label="Toggle music">
+        <span class="music-toggle__icon">🔊</span>
+        <span class="music-toggle__label">Music On</span>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>cnr_chat</title>
+</head>
+<body>
+    <div id="chat" class="chat">
+        <!-- channel tabs (click to switch view + send target) -->
+        <div id="channels" class="channels hidden">
+            <button class="ch-tab active" data-ch="global">GLOBAL</button>
+            <button class="ch-tab" data-ch="local">LOCAL</button>
+            <button class="ch-tab ch-police hidden" data-ch="police">POLICE RADIO</button>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <!-- command suggestions ("/" autocomplete) -->
+        <div id="suggestions" class="suggestions hidden"></div>
+
+        <div id="inputbar" class="inputbar hidden">
+            <span id="ch-label" class="ch-label">GLOBAL</span>
+            <input id="input" class="input" type="text" maxlength="256" autocomplete="off" placeholder="Type a message…">
+            <div class="tools">
+                <button id="btn-color" class="tool" title="Text colour">🎨</button>
+                <button id="btn-emoji" class="tool" title="Emoji">🙂</button>
+                <button id="btn-gif" class="tool gif disabled" title="GIF (coming soon)">GIF</button>
+            </div>
+        </div>
+
+        <!-- colour swatches -->
+        <div id="colorpanel" class="panel colorpanel hidden"></div>
+
+        <!-- emoji grid -->
+        <div id="emojipanel" class="panel emojipanel hidden"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

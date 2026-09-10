@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CnR</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="root">
+        <div class="bg-grain" aria-hidden="true"></div>
+        <div class="bg-scanlines" aria-hidden="true"></div>
+
+        <section id="team-select" class="view view-team hidden" aria-label="Team selection">
+            <div class="team-bg" aria-hidden="true">
+                <div class="team-bg-half team-bg-half--cop"></div>
+                <div class="team-bg-half team-bg-half--robber"></div>
+                <div class="team-bg-slash"></div>
+            </div>
+
+            <header class="team-hero">
+                <div class="brand">
+                    <span class="brand-bar brand-bar--cop"></span>
+                    <span class="brand-mark"><span class="brand-elite">ELITE</span><span class="brand-cnr"><span class="bc">C</span><span class="bn">n</span><span class="br">R</span></span></span>
+                    <span class="brand-bar brand-bar--robber"></span>
+                </div>
+                <h1 class="team-hero-title">
+                    <span class="word word--cop">COPS</span>
+                    <span class="amp">&amp;</span>
+                    <span class="word word--robber">ROBBERS</span>
+                </h1>
+                <p class="team-hero-hint">CHOOSE YOUR SIDE · USE <code>/newlife</code> TO RESET</p>
+            </header>
+
+            <div class="team-cards">
+                <article class="team-card team-card--cop" data-side="cop">
+                    <div class="team-card-header">
+                        <div class="team-card-tag">DEPT</div>
+                        <h2 class="team-card-title">COP</h2>
+                        <p class="team-card-lead">Patrol Los Santos. Cuff suspects. Spend credits on gear.</p>
+                    </div>
+                    <div class="team-card-chips">
+                        <span class="team-chip">Mission Row PD</span>
+                        <span class="team-chip">Vespucci PD</span>
+                        <span class="team-chip">Arrest &amp; Patrol</span>
+                    </div>
+                    <div class="team-card-stats">
+                        <div><span>+6</span><em>credits / arrest</em></div>
+                        <div><span>$1000</span><em>per arrest</em></div>
+                        <div><span>+1</span><em>credit / kill</em></div>
+                    </div>
+                    <p class="team-card-gear">Credits unlock weapons · armor · police vehicles</p>
+                    <button type="button" class="btn btn-cop js-team">
+                        ENLIST<span class="btn-arrow">→</span>
+                    </button>
+                </article>
+
+                <div class="team-vs" aria-hidden="true">VS</div>
+
+                <article class="team-card team-card--robber" data-side="robber">
+                    <div class="team-card-header">
+                        <div class="team-card-tag">ON THE RUN</div>
+                        <h2 class="team-card-title">ROBBER</h2>
+                        <p class="team-card-lead">Rob stores. Stack credits. Hit the bank.</p>
+                    </div>
+                    <div class="team-card-chips">
+                        <span class="team-chip">Random Spawn</span>
+                        <span class="team-chip">Ammu-Nation</span>
+                        <span class="team-chip">Bolingbroke</span>
+                    </div>
+                    <div class="team-card-stats">
+                        <div><span>$1K</span><em>24/7 store</em></div>
+                        <div><span>$3K</span><em>jewelry · 3 cr</em></div>
+                        <div><span>$5K</span><em>bank · 5 cr</em></div>
+                    </div>
+                    <p class="team-card-gear">+1 credit per 24/7 store rob · spend credits on jewelry &amp; bank jobs</p>
+                    <button type="button" class="btn btn-robber js-team">
+                        RUN<span class="btn-arrow">→</span>
+                    </button>
+                </article>
+            </div>
+
+            <footer class="team-footnote">
+                <span class="dot dot--cop"></span> COP <span class="sep">·</span>
+                <span class="dot dot--wanted"></span> WANTED <span class="sep">·</span>
+                <span class="dot dot--innocent"></span> INNOCENT (HIDDEN)
+            </footer>
+        </section>
+
+
+        <section id="skin-picker" class="view view-overlay hidden" aria-label="Character Creator">
+            <div class="panel panel--skin panel--accent-cop" style="max-width: 820px; width: 100%; max-height: 85vh; display: flex; flex-direction: column;">
+                <header class="panel-head">
+                    <span class="panel-kicker">STEP 02</span>
+                    <h2 class="panel-title" id="skin-picker-title">CHARACTER CREATOR</h2>
+                    <p class="panel-sub" id="skin-picker-sub">Customize your genetics, hair, and style</p>
+                </header>
+
+                <div class="creator-layout" style="display: flex; gap: 20px; flex: 1; min-height: 0; text-align: left;">
+
+                    <div class="creator-tabs" style="width: 180px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid var(--line-soft); padding-right: 12px; overflow-y: auto;">
+                        <button type="button" class="creator-tab active" data-tab="parents">1. GENETICS</button>
+                        <button type="button" class="creator-tab" data-tab="hair">2. HAIR & FACE</button>
+                        <button type="button" class="creator-tab" id="tab-clothing-btn" data-tab="clothing">3. CLOTHING</button>
+                    </div>
+
+
+                    <div class="creator-content" style="flex: 1; overflow-y: auto; padding-right: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+                        <div class="creator-pane" id="pane-parents">
+                            <div class="field-label" style="margin-bottom: 6px;">BIOLOGICAL GENDER</div>
+                            <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                                <button type="button" class="btn btn-ghost active-gender" id="gender-male" style="flex: 1; text-align: center; justify-content: center;">MALE</button>
+                                <button type="button" class="btn btn-ghost" id="gender-female" style="flex: 1; text-align: center; justify-content: center;">FEMALE</button>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">FATHER GENE (<span id="val-father">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-father" min="0" max="45" value="0" />
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">MOTHER GENE (<span id="val-mother">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-mother" min="0" max="45" value="0" />
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">FACE RESEMBLANCE (<span id="val-shape">50</span>%)</label>
+                                <input type="range" class="creator-slider" id="slider-shape" min="0" max="100" value="50" />
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">SKIN TONE MIX (<span id="val-skin">50</span>%)</label>
+                                <input type="range" class="creator-slider" id="slider-skin" min="0" max="100" value="50" />
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">EYE COLOR (<span id="val-eyes">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-eyes" min="0" max="31" value="0" />
+                            </div>
+                        </div>
+
+
+                        <div class="creator-pane hidden" id="pane-hair">
+                            <div class="control-group">
+                                <label class="field-label">HAIR STYLE (<span id="val-hair">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-hair" min="0" max="74" value="0" />
+                            </div>
+
+                            <div class="control-group">
+                                <label class="field-label">HAIR COLOR (<span id="val-hair-color">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-hair-color" min="0" max="63" value="0" />
+                            </div>
+
+                            <div class="control-group" id="beard-control-group">
+                                <label class="field-label">BEARD STYLE (<span id="val-beard">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-beard" min="0" max="28" value="0" />
+                            </div>
+
+                            <div class="control-group" id="beard-color-control-group">
+                                <label class="field-label">BEARD COLOR (<span id="val-beard-color">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-beard-color" min="0" max="63" value="0" />
+                            </div>
+                        </div>
+
+
+                        <div class="creator-pane hidden" id="pane-clothing">
+                            <div id="clothing-cop-hint" class="inv-empty" style="margin-bottom: 12px; display: none;">
+                                Cops spawn in official uniform. Custom clothing can only be worn as a robber.
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">SHIRT / TOP (<span id="val-top">1</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-top" min="0" max="140" value="1" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">SHIRT TEXTURE / COLOR (<span id="val-top-txt">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-top-txt" min="0" max="15" value="0" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">PANTS STYLE (<span id="val-pants">1</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-pants" min="0" max="90" value="1" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">PANTS TEXTURE / COLOR (<span id="val-pants-txt">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-pants-txt" min="0" max="15" value="0" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">SHOES STYLE (<span id="val-shoes">1</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-shoes" min="0" max="80" value="1" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">SHOES TEXTURE / COLOR (<span id="val-shoes-txt">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-shoes-txt" min="0" max="15" value="0" />
+                            </div>
+
+                            <div class="control-group clothing-item">
+                                <label class="field-label">TORSO / ARMS (<span id="val-arms">0</span>)</label>
+                                <input type="range" class="creator-slider" id="slider-arms" min="0" max="80" value="0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset id="station-chooser" class="station-chooser hidden" style="margin-top: 10px;">
+                    <legend class="field-label">SPAWN STATION</legend>
+                    <label class="station-opt"><input type="radio" name="station" value="missionRow" checked /><span>Mission Row PD</span></label>
+                    <label class="station-opt"><input type="radio" name="station" value="vespucci" /><span>Vespucci PD</span></label>
+                </fieldset>
+
+                <footer class="panel-foot panel-foot--split" style="margin-top: 12px; border-top: 1px solid var(--line-soft); padding-top: 12px;">
+                    <button type="button" class="btn btn-ghost" id="skin-random">🎲 RANDOMIZE</button>
+                    <button type="button" class="btn btn-primary" id="skin-spawn">DEPLOY & SPAWN<span class="btn-arrow">→</span></button>
+                </footer>
+            </div>
+        </section>
+
+
+        <section id="rank-picker" class="view view-overlay hidden" aria-label="Level terminal">
+            <div class="panel panel--wide panel--accent-cop">
+                <header class="panel-head">
+                    <span class="panel-kicker">PRECINCT TERMINAL</span>
+                    <h2 class="panel-title">LEVEL ROSTER</h2>
+                    <p class="panel-sub">Select an unlocked level, pick a skin, then commit.</p>
+                </header>
+                <div id="rank-list" class="rank-list" role="list"></div>
+                <div id="rank-skin-row" class="rank-skin-row hidden">
+                    <p class="field-label">SKINS · <span id="rank-skin-rank-name"></span></p>
+                    <div id="rank-skin-chips" class="chip-row"></div>
+                    <button type="button" class="btn btn-primary" id="rank-apply">APPLY<span class="btn-arrow">→</span></button>
+                </div>
+                <footer class="panel-foot panel-foot--split">
+                    <button type="button" class="btn btn-ghost" id="rank-close">CLOSE</button>
+                </footer>
+            </div>
+        </section>
+
+
+        <section id="vehicle-picker" class="view view-overlay hidden" aria-label="Vehicle yard">
+            <div class="panel panel--wide panel--accent-cop">
+                <header class="panel-head">
+                    <span class="panel-kicker">MOTOR POOL</span>
+                    <h2 class="panel-title">VEHICLE YARD</h2>
+                    <p class="panel-sub">Locked to your active level.</p>
+                </header>
+                <div id="vehicle-grid" class="vehicle-grid"></div>
+                <footer class="panel-foot panel-foot--split">
+                    <button type="button" class="btn btn-ghost" id="vehicle-close">CLOSE</button>
+                </footer>
+            </div>
+        </section>
+
+
+        <section id="help" class="view view-overlay hidden" aria-label="Server guide">
+            <div class="panel panel--help panel--accent-gold">
+                <header class="panel-head panel-head--row">
+                    <div>
+                        <span class="panel-kicker">FIELD MANUAL</span>
+                        <h2 class="panel-title">SERVER GUIDE</h2>
+                        <p class="panel-sub">Controls · rules · how to play</p>
+                    </div>
+                    <button type="button" class="btn btn-ghost" id="help-close">CLOSE · ESC</button>
+                </header>
+                <div class="help-layout">
+                    <nav id="help-nav" class="help-nav" aria-label="Guide sections"></nav>
+                    <main id="help-content" class="help-content"></main>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="ammu-shop" class="view view-overlay hidden" aria-label="Ammu-Nation">
+            <div class="panel panel--wide panel--accent-gold">
+                <header class="panel-head panel-head--row">
+                    <div>
+                        <span class="panel-kicker">AMMU-NATION</span>
+                        <h2 class="panel-title">GUN STORE</h2>
+                        <p class="panel-sub">Cash on hand: $<span id="ammu-cash">0</span></p>
+                    </div>
+                    <button type="button" class="btn btn-ghost" id="ammu-close">CLOSE · ESC</button>
+                </header>
+                <div id="ammu-grid" class="shop-grid"></div>
+            </div>
+        </section>
+
+        <section id="dealership" class="view view-overlay hidden" aria-label="Dealership">
+            <div class="panel panel--wide panel--accent-gold">
+                <header class="panel-head panel-head--row">
+                    <div>
+                        <span class="panel-kicker">PREMIUM DELUXE</span>
+                        <h2 class="panel-title">MOTOR SHOWROOM</h2>
+                        <p class="panel-sub">Cash on hand: $<span id="dealer-cash">0</span></p>
+                    </div>
+                    <button type="button" class="btn btn-ghost" id="dealer-close">CLOSE · ESC</button>
+                </header>
+                <div id="dealer-grid" class="shop-grid"></div>
+            </div>
+        </section>
+
+
+        <section id="newlife-confirm" class="view view-overlay hidden" aria-label="New life confirmation">
+            <div class="panel panel--modal panel--accent-robber">
+                <header class="panel-head">
+                    <span class="panel-kicker">DANGER</span>
+                    <h2 class="panel-title">RESET EVERYTHING?</h2>
+                    <p class="panel-sub">Wipes XP, level, cash, jail time, and side. Returns to team select.</p>
+                </header>
+                <div class="row-buttons">
+                    <button type="button" class="btn btn-robber" id="newlife-yes">CONFIRM RESET</button>
+                    <button type="button" class="btn btn-ghost" id="newlife-no">CANCEL</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="radio-input" class="view view-radio hidden" aria-label="Police radio">
+            <div class="panel panel--radio panel--accent-cop">
+                <header class="panel-head">
+                    <span class="panel-kicker">CHANNEL 01</span>
+                    <h3 class="panel-title panel-title--sm">POLICE RADIO</h3>
+                </header>
+                <div class="radio-input-row">
+                    <span class="radio-prompt">&gt;</span>
+                    <input type="text" id="radio-text" class="field-input" placeholder="Message to all units…" maxlength="200" autocomplete="off" />
+                </div>
+                <div class="row-buttons">
+                    <button type="button" class="btn btn-primary" id="radio-send">TRANSMIT</button>
+                    <button type="button" class="btn btn-ghost" id="radio-cancel">CANCEL</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="inventory" class="view view-overlay hidden" aria-label="Inventory">
+            <div class="panel panel--wide panel--accent-cop">
+                <header class="panel-head panel-head--row">
+                    <div>
+                        <span class="panel-kicker">F2 · STATUS</span>
+                        <h2 class="panel-title">INVENTORY</h2>
+                        <p class="panel-sub">Weapons · consumables · player status</p>
+                    </div>
+                    <button type="button" class="btn btn-ghost" id="inventory-close">CLOSE · ESC</button>
+                </header>
+                <div class="inv-layout">
+                    <section class="inv-block">
+                        <h3 class="inv-block-title">STATUS</h3>
+                        <div id="inv-status" class="inv-status"></div>
+                    </section>
+                    <section class="inv-block">
+                        <h3 class="inv-block-title">WEAPONS</h3>
+                        <div id="inv-weapons" class="inv-weapons"></div>
+                    </section>
+                    <section class="inv-block">
+                        <h3 class="inv-block-title">CONSUMABLES</h3>
+                        <div id="inv-items" class="inv-items"></div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+
+        <aside id="hud" class="hud hidden" aria-live="polite">
+            <div id="hud-card" class="hud-pill">
+                <div class="hud-stripe" aria-hidden="true"></div>
+                <span id="hud-side-icon" class="hud-icon" aria-hidden="true">—</span>
+                <div class="hud-body">
+                    <div id="hud-line-primary" class="hud-line hud-line--primary">—</div>
+                    <div class="hud-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div id="hud-bar-fill" class="hud-bar-fill"></div>
+                    </div>
+                    <div id="hud-line-secondary" class="hud-line hud-line--secondary">—</div>
+                    <div id="hud-line-jail" class="hud-line hud-line--jail"></div>
+                </div>
+            </div>
+        </aside>
+
+
+        <aside id="radio-feed" class="radio-feed" aria-live="polite"></aside>
+
+
+        <aside id="notifications" class="toast-stack" aria-live="polite"></aside>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
